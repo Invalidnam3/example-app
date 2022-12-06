@@ -15,6 +15,17 @@ class ContactController extends Controller
       return view('contacts.index', compact('contacts', 'companies'));
     }
 
+    public function create() {
+      return view('contacts.create');
+    }
+
+    public function show($id) {
+      $contacts = $this->getContacts();
+      abort_if(!isset($contacts[$id]), 404);
+      $contact = $contacts[$id];
+      return view('contacts.show')->with('contact', $contact);
+    }
+
     private function getContacts () {
       return [
         1 => ['id' => 1, 'name' => 'Name 1', 'phone' => '1234567890'],
