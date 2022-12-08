@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\TaskController;
+
+use App\Http\Controllers\ContactNoteController;
 use Illuminate\Support\Facades\Route;
 
 // Controllers
-
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -34,4 +35,8 @@ Route::resources([
 ]);
 Route::resource('/activities', ActivityController::class)->except([
   'index', 'show'
+]);
+Route::resource('/contacts.notes', ContactNoteController::class)->shallow();
+Route::resource('/activities', ActivityController::class)->parameters([
+  'activities' => 'active'
 ]);
